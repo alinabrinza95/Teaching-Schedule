@@ -19,5 +19,7 @@ namespace TeachingSchedule.Services
                 firstDay = firstDay.AddDays(course.FrequencyInDays);
             }
         }
+
+
     }
 }

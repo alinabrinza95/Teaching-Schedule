@@ -6,8 +6,7 @@ namespace TeachingSchedule.Models
 {
     public class Student
     {
-        [RegularExpression(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", ErrorMessage = "Guid is invalid")]
-        public Guid Guid { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "First name is required")]
         [MaxLength(50, ErrorMessage = "First name is too big")]
@@ -21,7 +20,7 @@ namespace TeachingSchedule.Models
         public DateTime BirthDate { get; set; }
 
         [RegularExpression(@"[F]|[M]")]
-        public char Sex { get; set; }
+        public char Gender { get; set; }
 
         public bool IsEnrolled { get; set; }
 

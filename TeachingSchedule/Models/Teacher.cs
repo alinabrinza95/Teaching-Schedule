@@ -11,7 +11,7 @@ namespace TeachingSchedule.Models
 
         public string LastName { get; set; }
 
-        public char Sex { get; set; }
+        public char Gender { get; set; }
 
         public DateTime BirthDate { get; set; }
 
