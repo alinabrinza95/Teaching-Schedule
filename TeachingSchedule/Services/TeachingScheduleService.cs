@@ -15,7 +15,7 @@ namespace TeachingSchedule.Services
             _teacherService = new TeacherService(_courseService, seed);
         }
 
-        public void ScheduleStudent(int studentId, List<int> coursesIds)
+        public void ScheduleStudent(int studentId, List<int> coursesIds, string path)
         {
             _studentService.AssignCoursesToStudent(studentId, coursesIds);
             _studentService.SetStudentEnrollment(studentId);
@@ -24,29 +24,29 @@ namespace TeachingSchedule.Services
                 return;
             }
             _studentService.ComputeStudentCoursesSchedules(studentId);
-            _studentService.CreateStudentScheduleFile(studentId);
+            _studentService.CreateStudentScheduleFile(studentId, path);
         }
 
-        public void ScheduleTeacher(int teacherId)
+        public void ScheduleTeacher(int teacherId, string path)
         {
             _teacherService.AssignCoursesToTeacher(teacherId);
             _teacherService.ComputeTeacherCoursesSchedules(teacherId);
-            _teacherService.CreateTeacherScheduleFile(teacherId);
+            _teacherService.CreateTeacherScheduleFile(teacherId, path);
         }
 
-        public void ScheduleStudents(List<int> studentIds, Dictionary<int, List<int>> coursesIds)
+        public void ScheduleStudents(List<int> studentIds, Dictionary<int, List<int>> coursesIds, string path)
         {
             foreach (var studentId in studentIds)
             {
-                ScheduleStudent(studentId, coursesIds[studentId]);
+                ScheduleStudent(studentId, coursesIds[studentId], path+studentId);
             }
         }
 
-        public void ScheduleTeachers(List<int> teacherIds)
+        public void ScheduleTeachers(List<int> teacherIds, string path)
         {
             foreach (var teacherId in teacherIds)
             {
-                ScheduleTeacher(teacherId);
+                ScheduleTeacher(teacherId, path+teacherId);
             }
         }
     }

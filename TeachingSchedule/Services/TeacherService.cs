@@ -41,10 +41,10 @@ namespace TeachingSchedule.Services
             }
         }
 
-        public void CreateTeacherScheduleFile(int id)
+        public void CreateTeacherScheduleFile(int id, string path)
         {
             var teacher = _teacherRepository.GetTeacherById(id);
-            using (var file = new System.IO.StreamWriter(string.Format("C:\\Users\\albrinza\\OneDrive - ENDAVA\\Desktop\\Teaching\\TeacherSchedule_{0}_{1}_{2}.txt", teacher.FirstName, teacher.LastName, DateTime.Now.Year)))
+            using (var file = new System.IO.StreamWriter(path))
             {
                 foreach (var course in teacher.Courses)
                 {

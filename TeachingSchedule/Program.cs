@@ -13,8 +13,8 @@ namespace TeachingSchedule
             var teachingScheduleService = new TeachingScheduleService(seed);
             seed.FeedStudentCourseDictionary();
 
-            teachingScheduleService.ScheduleStudents(seed.Students.Select(s=>s.Id).ToList(), seed.StudentCourseDictionary);
-            teachingScheduleService.ScheduleTeachers(seed.Teachers.Select(t=>t.Id).ToList());
+            teachingScheduleService.ScheduleStudents(seed.Students.Select(s=>s.Id).ToList(), seed.StudentCourseDictionary, "path");
+            teachingScheduleService.ScheduleTeachers(seed.Teachers.Select(t=>t.Id).ToList(), "path");
         }
     }
 }
