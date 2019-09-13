@@ -24,7 +24,6 @@ namespace TeachingSchedule
                     LastName = "Doe",
                     Gender = 'M',
                     BirthDate = new DateTime(1990, 10, 06),
-                    Courses = new List<Course>()
                 },
                 new Student()
                 {
@@ -33,7 +32,6 @@ namespace TeachingSchedule
                     LastName = "Doe",
                     Gender = 'F',
                     BirthDate = new DateTime(1998, 10, 06),
-                    Courses = new List<Course>()
                 },
                 new Student()
                 {
@@ -42,7 +40,6 @@ namespace TeachingSchedule
                     LastName = "Ingram",
                     Gender = 'F',
                     BirthDate = new DateTime(2001, 08, 26),
-                    Courses = new List<Course>()
                 },
                 new Student()
                 {
@@ -51,7 +48,6 @@ namespace TeachingSchedule
                     LastName = "Marge",
                     Gender = 'M',
                     BirthDate = new DateTime(2005, 01, 25),
-                    Courses = new List<Course>()
                 }
             };
         }
@@ -67,7 +63,6 @@ namespace TeachingSchedule
                     LastName = "Gregova",
                     Gender = 'F',
                     BirthDate = new DateTime(1970, 05,17),
-                    Courses = new List<Course>()
                 },
                 new Teacher()
                 {
@@ -76,7 +71,6 @@ namespace TeachingSchedule
                     LastName = "Helm",
                     Gender = 'M',
                     BirthDate = new DateTime(1982, 02,28),
-                    Courses = new List<Course>()
                 },
                 new Teacher()
                 {
@@ -85,7 +79,6 @@ namespace TeachingSchedule
                     LastName = "Herminger",
                     Gender = 'M',
                     BirthDate = new DateTime(1968, 11,16),
-                    Courses = new List<Course>()
                 },
                 new Teacher()
                 {
@@ -94,7 +87,6 @@ namespace TeachingSchedule
                     LastName = "Blum",
                     Gender = 'F',
                     BirthDate = new DateTime(1985, 07,20),
-                    Courses = new List<Course>()
                 },
             };
         }
@@ -111,7 +103,7 @@ namespace TeachingSchedule
                     FrequencyInDays = 7,
                     NumberOfCoursesPerYear = 30,
                     CourseSchedule = new List<DateTime>(),
-                    Teacher = new Seed().Teachers.FirstOrDefault(t => t.Id.Equals(1))
+                    Teacher = Teachers.FirstOrDefault(t=>t.Id.Equals(1))
                 },
                 new Course()
                 {
@@ -121,7 +113,7 @@ namespace TeachingSchedule
                     FrequencyInDays = 14,
                     NumberOfCoursesPerYear = 15,
                     CourseSchedule = new List<DateTime>(),
-                    Teacher = new Seed().Teachers.FirstOrDefault(t => t.Id.Equals(2))
+                    Teacher = Teachers.FirstOrDefault(t=>t.Id.Equals(2))
                 },
                 new Course()
                 {
@@ -131,8 +123,18 @@ namespace TeachingSchedule
                     FrequencyInDays = 7,
                     NumberOfCoursesPerYear = 28,
                     CourseSchedule = new List<DateTime>(),
-                    Teacher = new Seed().Teachers.FirstOrDefault(t => t.Id.Equals(3))
-                }
+                    Teacher = Teachers.FirstOrDefault(t=>t.Id.Equals(3))
+                },
+                new Course()
+                {
+                    Id = 4,
+                    Name = "Database",
+                    Description = "Advanced techniques in database",
+                    FrequencyInDays = 7,
+                    NumberOfCoursesPerYear = 20,
+                    CourseSchedule = new List<DateTime>(),
+                    Teacher = Teachers.FirstOrDefault(t=>t.Id.Equals(4))
+                },
             };
         }
 

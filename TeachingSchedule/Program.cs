@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using TeachingSchedule.Services;
 
 namespace TeachingSchedule
@@ -11,7 +11,15 @@ namespace TeachingSchedule
             seed.FeedEntities();
 
             var teachingScheduleService = new TeachingScheduleService(seed);
-            teachingScheduleService.ScheduleStudent(1);
+            foreach (var student in seed.Students)
+            {
+                teachingScheduleService.ScheduleStudent(student.Id, new List<int> { 1, 2, 3, 4 });
+            }
+
+            foreach (var teacher in seed.Teachers)
+            {
+                teachingScheduleService.ScheduleTeacher(teacher.Id);
+            }
         }
     }
 }

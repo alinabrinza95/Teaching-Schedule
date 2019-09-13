@@ -23,6 +23,11 @@ namespace TeachingSchedule.Repository
             return _seed.Courses.Where(c => c.Teacher.Id.Equals(teacherId)).ToList();
         }
 
+        public List<Course> GetCoursesByIds(List<int> ids)
+        {
+            return _seed.Courses.Where(c => ids.Contains(c.Id)).ToList();
+        }
+
         public List<Course> GetAllCourses()
         {
             return _seed.Courses;

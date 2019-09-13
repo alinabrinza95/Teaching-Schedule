@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using TeachingSchedule.Models;
 using TeachingSchedule.Repository;
 
 namespace TeachingSchedule.Services
@@ -13,6 +15,14 @@ namespace TeachingSchedule.Services
         {
             _courseService = courseService;
             _teacherRepository = new TeacherRepository(seed);
+        }
+
+        public void AssignCoursesToTeacher(int id)
+        {
+            var teacher = _teacherRepository.GetTeacherById(id);
+
+            teacher.Courses = new List<Course>();
+            teacher.Courses.AddRange(_courseService.GetCoursesByTeacherId(id));
         }
 
         public void ComputeTeacherCoursesSchedules(int id)
@@ -34,7 +44,7 @@ namespace TeachingSchedule.Services
         public void CreateTeacherScheduleFile(int id)
         {
             var teacher = _teacherRepository.GetTeacherById(id);
-            using (var file = new System.IO.StreamWriter(@"C:\Users\albrinza\OneDrive - ENDAVA\Desktop\Teaching\StudentSchedule.txt"))
+            using (var file = new System.IO.StreamWriter(string.Format("C:\\Users\\albrinza\\OneDrive - ENDAVA\\Desktop\\Teaching\\TeacherSchedule_{0}_{1}_{2}.txt", teacher.FirstName, teacher.LastName, DateTime.Now.Year)))
             {
                 foreach (var course in teacher.Courses)
                 {

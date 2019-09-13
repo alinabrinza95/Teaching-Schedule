@@ -1,4 +1,5 @@
-﻿using TeachingSchedule.Models;
+﻿using System;
+using System.Collections.Generic;
 using TeachingSchedule.Repository;
 
 namespace TeachingSchedule.Services
@@ -13,6 +14,13 @@ namespace TeachingSchedule.Services
         {
             _courseService = courseService;
             _studentRepository = new StudentRepository(seed);
+        }
+
+        public void AssignCoursesToStudent(int id, List<int> courseIds)
+        {
+            var student = _studentRepository.GetStudentById(id);
+
+            student.Courses = _courseService.GetCoursesByIds(courseIds);
         }
 
         public void SetStudentEnrollment(int id)
@@ -41,7 +49,7 @@ namespace TeachingSchedule.Services
         public void CreateStudentScheduleFile(int id)
         {
             var student = _studentRepository.GetStudentById(id);
-            using (var file = new System.IO.StreamWriter(@"C:\Users\albrinza\OneDrive - ENDAVA\Desktop\Teaching\StudentSchedule.txt"))
+            using (var file = new System.IO.StreamWriter(string.Format("C:\\Users\\albrinza\\OneDrive - ENDAVA\\Desktop\\Teaching\\StudentSchedule_{0}_{1}_{2}.txt", student.FirstName, student.LastName, DateTime.Now.Year)))
             {
                 foreach (var course in student.Courses)
                 {
