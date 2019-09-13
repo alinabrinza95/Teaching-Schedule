@@ -33,5 +33,21 @@ namespace TeachingSchedule.Services
             _teacherService.ComputeTeacherCoursesSchedules(teacherId);
             _teacherService.CreateTeacherScheduleFile(teacherId);
         }
+
+        public void ScheduleStudents(List<int> studentIds, Dictionary<int, List<int>> coursesIds)
+        {
+            foreach (var studentId in studentIds)
+            {
+                ScheduleStudent(studentId, coursesIds[studentId]);
+            }
+        }
+
+        public void ScheduleTeachers(List<int> teacherIds)
+        {
+            foreach (var teacherId in teacherIds)
+            {
+                ScheduleTeacher(teacherId);
+            }
+        }
     }
 }

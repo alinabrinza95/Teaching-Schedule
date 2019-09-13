@@ -13,6 +13,17 @@ namespace TeachingSchedule
 
         public List<Course> Courses = new List<Course>();
 
+        public Dictionary<int, List<int>> StudentCourseDictionary = new Dictionary<int, List<int>>();
+
+        public void FeedStudentCourseDictionary()
+        {
+            StudentCourseDictionary.Add(1, new List<int> { 1, 2, 3 });
+            StudentCourseDictionary.Add(2, new List<int> { 2, 3, 4 });
+            StudentCourseDictionary.Add(3, new List<int> { 3, 4, 1 });
+            StudentCourseDictionary.Add(4, new List<int> { 1, 2, 3, 4 });
+        }
+
+
         public void FeedStudents()
         {
             Students = new List<Student>
