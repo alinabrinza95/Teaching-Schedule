@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TeachingSchedule.Models;
 
 namespace TeachingSchedule.Repository
 {
     public class CourseRepository
     {
-        private readonly Seed _seed;
+        private static Seed _seed;
 
-        public CourseRepository()
+        public CourseRepository(Seed seed)
         {
-            _seed = new Seed();
+            _seed = seed;
         }
 
         public Course GetCourseById(int id)

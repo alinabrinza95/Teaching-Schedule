@@ -1,4 +1,5 @@
 ﻿using System;
+using TeachingSchedule.Services;
 
 namespace TeachingSchedule
 {
@@ -6,7 +7,11 @@ namespace TeachingSchedule
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var seed = new Seed();
+            seed.FeedEntities();
+
+            var teachingScheduleService = new TeachingScheduleService(seed);
+            teachingScheduleService.ScheduleStudent(1);
         }
     }
 }

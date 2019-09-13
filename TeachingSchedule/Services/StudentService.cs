@@ -1,32 +1,46 @@
 ﻿using TeachingSchedule.Models;
+using TeachingSchedule.Repository;
 
 namespace TeachingSchedule.Services
 {
     public class StudentService
     {
+        private readonly StudentRepository _studentRepository;
         private readonly CourseService _courseService;
         private const int MinimumCoursesToAttend = 3;
 
-        public StudentService(CourseService courseService)
+        public StudentService(CourseService courseService, Seed seed)
         {
             _courseService = courseService;
+            _studentRepository = new StudentRepository(seed);
         }
 
-        public void SetStudentEnrollment(Student student)
+        public void SetStudentEnrollment(int id)
         {
+            var student = _studentRepository.GetStudentById(id);
+
             student.IsEnrolled = student.Courses.Count >= MinimumCoursesToAttend;
         }
 
-        public void ComputeStudentCoursesSchedules(Student student)
+        public bool IsStudentEnrolled(int id)
         {
+            var student = _studentRepository.GetStudentById(id);
+
+            return student.IsEnrolled;
+        }
+
+        public void ComputeStudentCoursesSchedules(int id)
+        {
+            var student = _studentRepository.GetStudentById(id);
             foreach (var course in student.Courses)
             {
-                _courseService.ComputeCourseSchedule(course);
+                _courseService.ComputeCourseSchedule(id);
             }
         }
 
-        public void CreateStudentScheduleFile(Student student)
+        public void CreateStudentScheduleFile(int id)
         {
+            var student = _studentRepository.GetStudentById(id);
             using (var file = new System.IO.StreamWriter(@"C:\Users\albrinza\OneDrive - ENDAVA\Desktop\Teaching\StudentSchedule.txt"))
             {
                 foreach (var course in student.Courses)

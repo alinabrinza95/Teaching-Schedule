@@ -8,9 +8,9 @@ namespace TeachingSchedule.Repository
     {
         private readonly Seed _seed;
 
-        public StudentRepository()
+        public StudentRepository(Seed seed)
         {
-            _seed = new Seed();
+            _seed = seed;
         }
 
         public Student GetStudentById(int id)
